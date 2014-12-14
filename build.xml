@@ -222,7 +222,7 @@ POSSIBILITY OF SUCH DAMAGE.
         <filter token="DATE" value="${ivy.publication.datetime}"/>
         <filter token="DESCRIPTION" value="XMLUnit compares a control XML document to a test document or the result of a transformation, validates documents, and compares the results of XPath expressions."/>
         <filter token="LICENSE" value="BSD License"/>
-        <filter token="LICENSE_URL" value="http://xmlunit.svn.sourceforge.net/viewvc/*checkout*/xmlunit/trunk/xmlunit/LICENSE.txt"/>
+        <filter token="LICENSE_URL" value="https://sourceforge.net/p/xmlunit/code/HEAD/tree/trunk/LICENSE.txt"/>
         <filter token="GROUP" value="xmlunit"/>
         <filter token="ARTIFACT" value="xmlunit"/>
         <filter token="TYPE" value="jar"/>
