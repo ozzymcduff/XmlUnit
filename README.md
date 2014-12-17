@@ -1,4 +1,4 @@
-XMLUnit version 1.0
+XMLUnit version 1.0 [![Build status](https://ci.appveyor.com/api/projects/status/sfybp8rm1vor58xd/branch/master?svg=true)](https://ci.appveyor.com/project/wallymathieu/xmlunit/branch/master)
 ===================
 
 To run this software you will need:
