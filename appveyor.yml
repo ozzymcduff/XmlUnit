@@ -1,0 +1,14 @@
+version: 1.0.{build}
+configuration: Release
+before_build:
+  - cd src
+  - nuget restore XmlUnit.sln
+  - cd ..
+build:
+  project: src\XmlUnit.sln
+  verbosity: minimal
+  publish_nuget: false
+nuget:
+  account_feed: false
+  project_feed: false
+  disable_publish_on_pr: true
