@@ -19,7 +19,7 @@ namespace XmlUnit.Tests {
             FileStream input = File.Open(file, FileMode.Open, FileAccess.Read);
             try {
                 Validator validator = new Validator(new XmlInput(new StreamReader(input)));
-                Assert.AreEqual(expected, validator.IsValid);
+                Assert.AreEqual(expected, validator.IsValid, "IsValid");
                 return validator;
             } finally {
                 input.Close();
@@ -28,12 +28,12 @@ namespace XmlUnit.Tests {
         
         [Test] public void XsdInvalidFileIsNotValid() {
             Validator validator = PerformAssertion(INVALID_FILE, false);
-            Assert.IsFalse(validator.IsValid);
+            Assert.IsFalse(validator.IsValid, "IsValid");
             Assert.IsTrue(validator.ValidationMessage
                           .IndexOf("http://www.publishing.org") > -1,
-                          validator.ValidationMessage);
+                          validator.ValidationMessage, "No url in message");
             Assert.IsTrue(validator.ValidationMessage.IndexOf("Book") > -1,
-                          validator.ValidationMessage);
+                          validator.ValidationMessage, "Book should not be part of message");
         }
     }
 }

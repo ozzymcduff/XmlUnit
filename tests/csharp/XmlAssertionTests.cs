@@ -59,10 +59,10 @@ namespace XmlUnit.Tests {
         
         [Test] public void AssertXmlValidFalseForInvalidFile() {
             StreamReader reader = GetStreamReader(ValidatorTests.INVALID_FILE);
-            bool caughtException = true;
+            bool caughtException = false;
             try {
                 XmlAssertion.AssertXmlValid(reader);
-                caughtException = false;
+                caughtException = true;
             } catch(AssertionException e) {
                 AvoidUnusedVariableCompilerWarning(e);
             } finally {
@@ -115,38 +115,6 @@ namespace XmlUnit.Tests {
                                                 MY_SOLAR_SYSTEM,
                                                 "False");
         }
-        
-        [Test] public void AssertXslTransformResultsWorksWithStrings() {
-        	string xslt = XsltTests.IDENTITY_TRANSFORM;
-        	string someXml = "<a><b>c</b><b/></a>";
-        	XmlAssertion.AssertXslTransformResults(xslt, someXml, someXml);
-        }
-        
-        [Test] public void AssertXslTransformResultsWorksWithXmlInput() {
-        	StreamReader xsl = GetStreamReader("animal.xsl");
-        	XmlInput xslt = new XmlInput(xsl);
-        	StreamReader xml = GetStreamReader("testAnimal.xml");
-        	XmlInput xmlToTransform = new XmlInput(xml);
-        	XmlInput expectedXml = new XmlInput("<dog/>");
-        	XmlAssertion.AssertXslTransformResults(xslt, xmlToTransform, expectedXml);
-        }
-        
-        [Test] public void AssertXslTransformResultsCatchesFalsePositive() {
-        	StreamReader xsl = GetStreamReader("animal.xsl");
-        	XmlInput xslt = new XmlInput(xsl);
-        	StreamReader xml = GetStreamReader("testAnimal.xml");
-        	XmlInput xmlToTransform = new XmlInput(xml);
-        	XmlInput expectedXml = new XmlInput("<cat/>");
-                bool caughtException = true;
-        	try {
-        		XmlAssertion.AssertXslTransformResults(xslt, xmlToTransform, expectedXml);
-                caughtException = false;
-        	} catch (AssertionException e) {
-        		AvoidUnusedVariableCompilerWarning(e);
-        	}
-            Assert.IsTrue(caughtException);
-        }
-
 
         private void AvoidUnusedVariableCompilerWarning(AssertionException e) {
             string msg = e.Message;

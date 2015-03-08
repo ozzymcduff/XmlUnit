@@ -114,16 +114,5 @@ namespace XmlUnit {
             XPath xpath = new XPath(anXPathExpression);
             NUnit.Framework.Assert.AreEqual(expectedValue, xpath.EvaluateXPath(inXml));
         }
-        
-        public static void AssertXslTransformResults(string xslTransform, string xmlToTransform, string expectedResult) {
-        	AssertXslTransformResults(new XmlInput(xslTransform), new XmlInput(xmlToTransform), new XmlInput(expectedResult));
-        }
-        
-        public static void AssertXslTransformResults(XmlInput xslTransform, XmlInput xmlToTransform, XmlInput expectedResult) {
-        	Xslt xslt = new Xslt(xslTransform);
-        	XmlOutput output = xslt.Transform(xmlToTransform);
-        	AssertXmlEquals(expectedResult, output.AsXml());
-        }
-
     }
 }

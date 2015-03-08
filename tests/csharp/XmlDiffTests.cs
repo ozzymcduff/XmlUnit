@@ -170,7 +170,7 @@ namespace XmlUnit.Tests {
                 + "</abc:XMLContent>"
                 + "</abc:EventBody>"
                 + "</abc:Message>";
-            AssertExpectedResult(control, test, true);
+            AssertExpectedResult(control, test, false);
         }
 
     }

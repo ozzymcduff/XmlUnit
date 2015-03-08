@@ -40,7 +40,9 @@ namespace XmlUnit {
             }
             
             if (_diffConfiguration.UseValidatingParser) {
-                XmlValidatingReader validatingReader = new XmlValidatingReader(xmlReader);
+                var settings = new XmlReaderSettings();
+                settings.ValidationType = ValidationType.Schema | ValidationType.DTD;
+                var validatingReader = XmlReader.Create(xmlReader, settings);
                 return validatingReader;
             }
             

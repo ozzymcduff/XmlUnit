@@ -6,15 +6,15 @@ namespace XmlUnit {
     
     public class XmlOutput {
 
-    	private readonly XslTransform _transform;
+        private readonly XslCompiledTransform _transform;
     	private readonly XsltArgumentList _xsltArgs;
-    	private readonly XPathNavigator _navigator;
+        private readonly XmlReader _navigator;
     	private readonly XmlResolver _resolverForXmlTransformed;
     	private readonly XmlReader[] _readersToClose;
     	
-    	internal XmlOutput(XslTransform transform, XsltArgumentList xsltArgs, 
-						   XPathNavigator navigator, XmlResolver resolverForXmlTransformed,
-						   XmlReader[] readersToClose) {
+        internal XmlOutput(XslCompiledTransform transform, XsltArgumentList xsltArgs, 
+            XmlReader navigator, XmlResolver resolverForXmlTransformed,
+	        XmlReader[] readersToClose) {
 			_transform = transform;
 			_xsltArgs = xsltArgs;
 			_navigator = navigator;
@@ -29,8 +29,9 @@ namespace XmlUnit {
 		}
     	                   	 	                   
 		public string AsString() {
-			StringWriter stringWriter = new StringWriter();
-	        Write(stringWriter);
+            var stringWriter = new StringWriter(); 
+            var writer = XmlWriter.Create(stringWriter);
+            Write(writer);
 			return stringWriter.ToString();
 		}
 		
@@ -42,16 +43,5 @@ namespace XmlUnit {
 	        _transform.Transform(_navigator, _xsltArgs, viaXmlWriter, _resolverForXmlTransformed);
 			CleanUp();
 		}
-		
-		public void Write(Stream viaStream) {			
-	        _transform.Transform(_navigator, _xsltArgs, viaStream, _resolverForXmlTransformed);
-			CleanUp();
-		}     
-		
-		public void Write(TextWriter viaTextWriter) {
-	        _transform.Transform(_navigator, _xsltArgs, viaTextWriter, _resolverForXmlTransformed);
-			CleanUp();
-		}
-
     }
 }

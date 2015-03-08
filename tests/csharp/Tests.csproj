@@ -54,7 +54,6 @@
     <Compile Include="XmlDiffTests.cs" />
     <Compile Include="XmlInputTests.cs" />
     <Compile Include="XPathTests.cs" />
-    <Compile Include="XsltTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\csharp\XmlUnit.csproj">
