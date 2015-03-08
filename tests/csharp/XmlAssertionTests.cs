@@ -49,30 +49,7 @@ namespace XmlUnit.Tests {
             }
             Assert.IsTrue(caughtException);
         }
-        
-        [Test] public void AssertXmlValidTrueForValidFile() {
-            StreamReader reader = GetStreamReader(VALID_FILE);
-            try {
-                XmlAssertion.AssertXmlValid(reader);
-            } finally {
-                reader.Close();
-            }
-        }
-        
-        [Test] public void AssertXmlValidFalseForInvalidFile() {
-            StreamReader reader = GetStreamReader(INVALID_FILE);
-            bool caughtException = false;
-            try {
-                XmlAssertion.AssertXmlValid(reader);
-                caughtException = true;
-            } catch(AssertionException e) {
-                AvoidUnusedVariableCompilerWarning(e);
-            } finally {
-                reader.Close();
-            }
-            Assert.IsTrue(caughtException);
-        }
-        
+                    
         private StreamReader GetStreamReader(string file) {
             FileStream input = File.Open(file, FileMode.Open, FileAccess.Read);
             return new StreamReader(input);

@@ -60,32 +60,7 @@ namespace XmlUnit {
               NUnit.Framework.Assert.IsFalse(diffResult.Identical, xmlDiff.OptionalDescription);
             }
         }
-        
-        public static void AssertXmlValid(string someXml) {
-            AssertXmlValid(new XmlInput(someXml));
-        }
-        
-        public static void AssertXmlValid(string someXml, string baseURI) {
-            AssertXmlValid(new XmlInput(someXml, baseURI));
-        }
-        
-        public static void AssertXmlValid(TextReader reader) {
-            AssertXmlValid(new XmlInput(reader));
-        }
-        
-        public static void AssertXmlValid(TextReader reader, string baseURI) {
-            AssertXmlValid(new XmlInput(reader, baseURI));
-        }
-        
-        public static void AssertXmlValid(XmlInput xmlInput) {
-            Validator validator = new Validator(xmlInput);
-            AssertXmlValid(validator);
-        }
-        
-        public static void AssertXmlValid(Validator validator) {
-          NUnit.Framework.Assert.IsTrue(validator.IsValid, validator.ValidationMessage);
-        }
-        
+            
         public static void AssertXPathExists(string anXPathExpression, string inXml) {
             AssertXPathExists(anXPathExpression, new XmlInput(inXml));
         }

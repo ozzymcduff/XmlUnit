@@ -51,7 +51,6 @@
     <Compile Include="Differences.cs" />
     <Compile Include="DifferenceType.cs" />
     <Compile Include="DiffResult.cs" />
-    <Compile Include="Validator.cs" />
     <Compile Include="XmlAssertion.cs" />
     <Compile Include="XmlDiff.cs" />
     <Compile Include="XmlInput.cs" />
