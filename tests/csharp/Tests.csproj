@@ -49,7 +49,6 @@
     <Compile Include="DiffConfigurationTests.cs" />
     <Compile Include="DifferenceTests.cs" />
     <Compile Include="DiffResultTests.cs" />
-    <Compile Include="ValidatorTests.cs" />
     <Compile Include="XmlAssertionTests.cs" />
     <Compile Include="XmlDiffTests.cs" />
     <Compile Include="XmlInputTests.cs" />

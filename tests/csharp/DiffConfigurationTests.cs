@@ -11,7 +11,8 @@ namespace XmlUnit.Tests {
         private static string xmlWithoutWhitespaceElement = "<elemA>as if<elemB/>\r\n</elemA>";
         private static string xmlWithWhitespaceElement = "<elemA>as if<elemB> </elemB></elemA>";
         private static string xmlWithoutWhitespace = "<elemA>as if<elemB/></elemA>";
-                
+        public static readonly string VALID_FILE = "BookXsdGenerated.xml";
+        public static readonly string INVALID_FILE = "invalidBook.xml";
         [Test] public void DefaultConfiguredWithGenericDescription() {
             DiffConfiguration diffConfiguration = new DiffConfiguration();
             Assert.AreEqual(DiffConfiguration.DEFAULT_DESCRIPTION, 
@@ -20,41 +21,15 @@ namespace XmlUnit.Tests {
             Assert.AreEqual(DiffConfiguration.DEFAULT_DESCRIPTION, 
                                    new XmlDiff("", "").OptionalDescription);
         }
-        
-      [Test]
-        public void DefaultConfiguredToUseValidatingParser() {
-            DiffConfiguration diffConfiguration = new DiffConfiguration();
-            Assert.AreEqual(DiffConfiguration.DEFAULT_USE_VALIDATING_PARSER, 
-                                   diffConfiguration.UseValidatingParser);
-            
-            bool exception = false;
-            using (FileStream controlFileStream = File.Open(ValidatorTests.VALID_FILE, 
-                                                            FileMode.Open,
-                                                            FileAccess.Read))
-            using (FileStream testFileStream = File.Open(ValidatorTests.INVALID_FILE, 
-                                                         FileMode.Open,
-                                                         FileAccess.Read)) {
-              try {
-                XmlDiff diff = new XmlDiff(new StreamReader(controlFileStream), 
-                                           new StreamReader(testFileStream));
-                diff.Compare();
-              } catch (System.Exception) {
-                // should be an XmlSchemaValidationException in .NET 2.0
-                // and later
-                exception = true;
-              }
-            }
-            Assert.IsTrue(exception, "expected validation to fail");
-        }
                 
       [Test]
       public void CanConfigureNotToUseValidatingParser() {
             DiffConfiguration diffConfiguration = new DiffConfiguration(false);
             Assert.AreEqual(false, diffConfiguration.UseValidatingParser);
             
-            FileStream controlFileStream = File.Open(ValidatorTests.VALID_FILE, 
+            FileStream controlFileStream = File.Open(VALID_FILE, 
                                                      FileMode.Open, FileAccess.Read);
-            FileStream testFileStream = File.Open(ValidatorTests.INVALID_FILE, 
+            FileStream testFileStream = File.Open(INVALID_FILE, 
                                                   FileMode.Open, FileAccess.Read);
             try {         
                 XmlDiff diff = new XmlDiff(new XmlInput(controlFileStream), 

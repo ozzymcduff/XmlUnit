@@ -5,6 +5,8 @@ namespace XmlUnit.Tests {
     
     [TestFixture]
     public class XmlAssertionTests {        
+        public static readonly string VALID_FILE = "BookXsdGenerated.xml";
+        public static readonly string INVALID_FILE = "invalidBook.xml";
         [Test] public void AssertStringEqualAndIdenticalToSelf() {
             string control = "<assert>true</assert>";
             string test = "<assert>true</assert>";
@@ -49,7 +51,7 @@ namespace XmlUnit.Tests {
         }
         
         [Test] public void AssertXmlValidTrueForValidFile() {
-            StreamReader reader = GetStreamReader(ValidatorTests.VALID_FILE);
+            StreamReader reader = GetStreamReader(VALID_FILE);
             try {
                 XmlAssertion.AssertXmlValid(reader);
             } finally {
@@ -58,7 +60,7 @@ namespace XmlUnit.Tests {
         }
         
         [Test] public void AssertXmlValidFalseForInvalidFile() {
-            StreamReader reader = GetStreamReader(ValidatorTests.INVALID_FILE);
+            StreamReader reader = GetStreamReader(INVALID_FILE);
             bool caughtException = false;
             try {
                 XmlAssertion.AssertXmlValid(reader);
